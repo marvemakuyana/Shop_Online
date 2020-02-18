@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+//import '../widgets/cart_item.dart';
 class CartItem{
   final String id;
   final String title;
@@ -54,6 +55,24 @@ double get totalAmount {
     _items.remove(productId);
     notifyListeners();
   }
+void removeSingleItem(String productId) {
+  if(!_items.containsKey(productId)) {
+    return;
+  }
+  if (_items[productId].quantity > 1) {
+    _items.update(productId, (exisistingCartItem) => CartItem(
+      id: exisistingCartItem.id, 
+      title: exisistingCartItem.title, 
+      price: exisistingCartItem.price, 
+      quantity: exisistingCartItem.quantity - 1,
+      )
+      );
+  } else {
+    _items.remove(productId);
+  }
+  notifyListeners();
+}
+
   void clear(){
     _items = {};
     notifyListeners();
