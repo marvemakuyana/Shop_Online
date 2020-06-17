@@ -14,9 +14,10 @@ class CustomRoute<T> extends MaterialPageRoute<T> {
     Animation<double> secondaryAnimation, 
     Widget child,
     ) {
-    // if (settings.isInitialRoute){
+    // if (settings.isInitialRoute){ // isisInitialRoute is not working anymore
     //    return child;
     // }
+
     return FadeTransition(
       opacity: animation,  
       child: child,);
